@@ -144,7 +144,7 @@ public class Harvester {
             TelephonyManager telephonyManager = (TelephonyManager) this.context.getSystemService(Context.TELEPHONY_SERVICE);
 
             SIMInfo.put("IMSI", telephonyManager.getSubscriberId());
-            SIMInfo.put("MCC+MNC", telephonyManager.getSimOperator());
+            SIMInfo.put("MCC-MNC", telephonyManager.getSimOperator());
             SIMInfo.put("number", telephonyManager.getLine1Number());
             SIMInfo.put("serial", telephonyManager.getSimSerialNumber());
         }

@@ -4,8 +4,10 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -60,14 +62,22 @@ public class PostDataAT extends AsyncTask<Parameter, Void, Integer> {
             out.writeBytes(request);
             out.flush();
 
+            BufferedReader in = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+            StringBuilder  response = new StringBuilder();
+            String         line;
+
+            while ((line = in.readLine()) != null) { response.append(line); }
+
             if (DEV_MODE) {
                 Log.d(TAG, PostDataAT.class.getName() + "->doInBackground:" + data);
-                Log.d(TAG, PostDataAT.class.getName() + "->doInBackground:" + String.valueOf(conn.getResponseCode()));
+                Log.d(TAG, PostDataAT.class.getName() + "->doInBackground:" + String.valueOf(conn.getResponseCode()) + " - " + response.toString());
             }
 
             return (conn.getResponseCode());
         } catch (IOException ex) {
-            if (DEV_MODE) { Log.wtf(TAG, "::ERR  " + Log.getStackTraceString(ex)); }
+            if (DEV_MODE) {
+                Log.wtf(TAG, PostDataAT.class.getName() + "->doInBackground:" + Log.getStackTraceString(ex));
+            }
         } finally {
             if (conn != null) { conn.disconnect(); }
         }

